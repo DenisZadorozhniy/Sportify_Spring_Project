@@ -15,3 +15,13 @@ The project used such technologies and libraries:
 ![registration](2.png)
 3. If the user enters incorrect data, site validation will work.
 ![validation](3.png)
+4. After successful registration it will be redirected to the login page.
+![login_page](4.png)
+5. After successful authorization, the user goes to the main page, where the site already defines his role and login. The login is displayed in the menu.
+![authorization](5.png)
+6. The blog section displays articles.
+![blog_sectione](6.png)
+7. Search by keyword will find the article the user needs.
+![search](7.png)
+8. For more convenient display of articles on the site, pagination is provided.
+![pagination](8.png)
