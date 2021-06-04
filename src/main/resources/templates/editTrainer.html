@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EditTrainet</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{styles/form.css}">
+</head>
+<body>
+
+<div class="container">
+    <div class="row main-form" th:each="el : ${trainerDetail} ">
+        <form class="" method="post"  th:action="'/adminPage/'+${id}+'/editTrainer'"  enctype="multipart/form-data" modelAttribute="trainerForm">
+            <div class="form-group">
+                <label for="file" class="cols-sm-2 control-label">Загрузите картинку</label>
+                <div class="cols-sm-10">
+                    <p th:text="${message}"></p>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+                        <input type="file" class="form-control" th:value="'data:image/jpeg;base64,' +${el.image}"  name="file" id="file" path="file" placeholder="Загрузите ваше фото"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fullName" class="cols-sm-2 control-label">ФИО</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                        <input type="text" th:value="${el.fullName}" class="form-control"  name="fullName" id="fullName"  placeholder="Введите ваше имя и фамилию"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="category" class="cols-sm-2 control-label">Категория</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" th:value="${el.category}" name="category" id="category" placeholder="Напишите вашу специализацию тренеровок "/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="cols-sm-2 control-label">О себе</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-align-justify" aria-hidden="true"></i></span>
+                        <textarea type="text" name="description"  th:text="${el.description}"  placeholder="Напишите о себе" class="form-control" style="min-height: 300px"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <input type="submit" value="Отправить"id="button" class="btn btn-primary btn-lg btn-block login-button" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

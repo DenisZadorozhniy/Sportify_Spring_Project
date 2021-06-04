@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head>
+<title>Blog</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Sportify template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" th:href="@{styles/bootstrap-4.1.2/bootstrap.min.css}">
+<link th:href="@{plugins/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" th:href="@{plugins/OwlCarousel2-2.3.4/owl.carousel.css}">
+<link rel="stylesheet" type="text/css" th:href="@{plugins/OwlCarousel2-2.3.4/owl.theme.default.css}">
+<link rel="stylesheet" type="text/css" th:href="@{plugins/OwlCarousel2-2.3.4/animate.css}">
+<link rel="stylesheet" type="text/css" th:href="@{styles/blog.css}">
+<link rel="stylesheet" type="text/css" th:href="@{styles/blog_responsive.css}">
+</head>
+<body>
+
+<div class="super_container">
+
+	<!-- Header -->
+	<header class="header" th:insert="blocks/header">
+    </header>
+
+	<div class="home">
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/blog.jpg" data-speed="0.8"></div>
+		<div class="home_overlay"></div>
+		<div class="home_container d-flex flex-column align-items-center justify-content-center">
+			<div class="home_title"><h1>Блог</h1></div>
+		</div>
+	</div>
+
+
+
+	<div class="blog">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="blog_posts d-flex flex-row align-items-start justify-content-between flex-wrap">
+
+						<div th:each="el : ${pagePost} " class="blog_post">
+							<div class="blog_post_image">
+                                <a th:href=" '/blog/' + ${el.id}"><img th:src="'data:image/jpeg;base64,' +${el.image} "></a>
+                             </div>
+                             <div class="blog_post_content">
+
+                                 <div class="blog_post_title"><h3><a th:href=" '/blog/' + ${el.id}" th:text="${el.title}"></a></h3></div>
+
+                                 <div sec:authorize=" hasRole('ROLE_ADMIN') ">
+                                    <div class="admin_tool">
+                                        <a th:href=" '/blog/' + ${el.id} +'/edit'  " class="editLink" >
+                                           <i class="fa fa-pencil" aria-hidden="true" title="Редактировать пост"></i>
+                                        </a>
+                                        <form method="post" th:action=" '/blog/' + ${el.id} +'/remove'  "  class="formDelete">
+                                           <button class="btn btn-warning btnDelete" type="submit">
+                                                <i class="fa fa-trash-o" aria-hidden="true" title="Удалить пост"></i>
+                                           </button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <div class="blog_post_info d-flex flex-row align-items-center justify-content-start">
+                                        <div class="author_image"><img src="images/blog_post_author.jpg" alt=""></div>
+                                        <div class="author_name">
+                                            <span>Автор: </span>
+                                            <span th:text="${el.author}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="blog_data">
+                                        <span th:text="${el.timeArticle}"></span>
+                                    </div>
+                                    <div class="blog_post_text">
+                                        <p th:text="${el.anons}"></p>
+                                    </div>
+                                    <div class="button blog_post_button"><a th:href=" '/blog/' + ${el.id}" >Подробнее</a></div>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="page_nav">
+                        <ul th:if="${pagePostTotalPage > 0}" class="d-flex flex-row align-items-center justify-content-start flex-wrap">
+
+                            <li th:each="pageNumber : ${numbers}" th:class="${pageNumber == pagePostNumber} ? active "   >
+                                <a th:href="@{'/blog?page=' + ${pageNumber} }" th:text="${pageNumber +1}"></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                    <div class="col-lg-4">
+                        <div class="sidebar">
+                            <div class="sidebar_search">
+                                <div class="sidebar_title">Поиск</div>
+                                <form method="post" th:action="@{/search}" class="sidebar_search_form">
+                                    <input type="text" class="sidebar_search_input" th:name="searchString" placeholder="Поиск" required="required">
+                                    <button class="sidebar_search_button"><img src="images/search.png" alt=""></button>
+                                </form>
+                            </div>
+
+                            <div class="promo">
+                                <div class="sidebar_title">Акции</div>
+                                <div class="promo_content">
+                                    <div class="background_image" style="background-image:url(images/promo.jpg)"></div>
+                                    <a th:href="@{'blog/' + '32'}">
+                                        <span class="promo_box">
+                                            <span class="d-flex flex-row align-items-center justify-content-start">
+                                                <span>30%</span>
+                                                <span>
+                                                    <span>На все</span>
+                                                    <span>посещения</span>
+                                                </span>
+                                            </span>
+                                            <span class="promo_text">Успей купить свой счасливый абонемент!</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer" th:insert="blocks/footer">
+        </footer>
+
+    </div>
+
+    <script th:src="@{js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{styles/bootstrap-4.1.2/popper.js}"></script>
+    <script th:src="@{styles/bootstrap-4.1.2/bootstrap.min.js}"></script>
+    <script th:src="@{plugins/greensock/TweenMax.min.js}"></script>
+    <script th:src="@{plugins/greensock/TimelineMax.min.js}"></script>
+    <script th:src="@{plugins/scrollmagic/ScrollMagic.min.js}"></script>
+    <script th:src="@{plugins/greensock/animation.gsap.min.js}"></script>
+    <script th:src="@{plugins/greensock/ScrollToPlugin.min.js}"></script>
+    <script th:src="@{plugins/OwlCarousel2-2.3.4/owl.carousel.js}"></script>
+    <script th:src="@{plugins/easing/easing.js}"></script>
+    <script th:src="@{plugins/progressbar/progressbar.min.js}"></script>
+    <script th:src="@{plugins/parallax-js-master/parallax.min.js}"></script>
+    <script th:src="@{js/blog.js}"></script>
+</body>
+</html>

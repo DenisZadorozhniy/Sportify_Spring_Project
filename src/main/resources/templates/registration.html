@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{styles/form.css}">
+</head>
+<body>
+
+<div class="container">
+    <div class="row main-form">
+        <form method="post" th:action="@{/registration}" th:object="${userForm}"
+              modelAttribute="userForm">
+
+            <div class="form-group">
+                <div>
+                    <label for="username" class="cols-sm-2 control-label">Ваш Логин</label>
+                    <span class="validationError" th:if="${#fields.hasErrors('username')}"
+                          th:errors="*{username}"></span>
+                    <span th:text="${errorLogin}"></span>
+                </div>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-users fa"
+                                                           aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" th:field="*{username}"
+                               name="username" id="username" placeholder="Введите ваш логин"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <label for="password" class="cols-sm-2 control-label">Пароль</label>
+                    <span class="validationError" th:if="${#fields.hasErrors('password')}"
+                          th:errors="*{password}"></span>
+                </div>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock fa-lg"
+                                                           aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" th:field="*{password}"
+                               name="password" id="password" placeholder="Введите ваш пароль"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <label for="passwordConfirm" class="cols-sm-2 control-label">Повторите
+                        пароль </label>
+                    <span class="validationError" th:if="${#fields.hasErrors('passwordConfirm')}"
+                          th:errors="*{passwordConfirm}"></span>
+                </div>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock fa-lg"
+                                                           aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" th:field="*{passwordConfirm}"
+                               name="passwordConfirm" id="passwordConfirm"
+                               placeholder="Повторите ваш пароль"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <label for="eMail" class="cols-sm-2 control-label">Ваш Email</label>
+                    <span class="validationError" th:if="${#fields.hasErrors('eMail')}"
+                          th:errors="*{eMail}"></span>
+                </div>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope fa"
+                                                           aria-hidden="true"></i></span>
+                        <input type="email" class="form-control" th:field="*{eMail}" name="eMail"
+                               id="eMail" placeholder="Введите ваш Email"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <input type="submit" value="Регистрация" id="button"
+                       class="btn btn-primary btn-lg btn-block login-button"/>
+            </div>
+
+            <a th:href="@{/login}" style="color: #FFFFFF">Войти на сайт</a>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

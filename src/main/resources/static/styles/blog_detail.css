@@ -1,0 +1,15 @@
+.blogD{
+    margin-top: 100px !important;
+}
+.titleArticle{
+    font: 35px "Open Sans", sans-serif;
+    font-weight: bold;
+    text-transform: none;
+    letter-spacing: 0px;
+    margin-top: 15px;
+}
+.textArticle{
+    margin-top: 10px;
+    font: 20px "Open Sans", sans-serif;
+}
+

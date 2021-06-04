@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{styles/form.css}">
+</head>
+<body>
+
+<div class="container">
+    <div class="row main-form">
+        <p th:if="${loginError}" th:text="${loginError}" class="error"></p>
+        <form class="" method="post" th:action="@{/login}" modelAttribute="userForm">
+            <div class="form-group">
+                <label for="username" class="cols-sm-2 control-label">Ваш Логин</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="username" id="username" path="username" placeholder="Введите ваш логин"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="cols-sm-2 control-label">Пароль</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" name="password" id="password" path="password" placeholder="Введите ваш пароль"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <input type="submit" value="Войти"id="button" class="btn btn-primary btn-lg btn-block login-button" />
+            </div>
+
+            <a th:href="@{/registration}" style="color: #FFFFFF">Зарегистрироваться на сайте</a>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

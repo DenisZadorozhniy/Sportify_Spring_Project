@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>addArticle</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{styles/form.css}">
+</head>
+<body>
+<div class="container">
+    <div class="row main-form">
+        <form class="" method="post" enctype="multipart/form-data" th:action="@{/addArticle}">
+
+            <div class="form-group">
+                <label for="file" class="cols-sm-2 control-label">Загрузите картинку</label>
+                <div class="cols-sm-10">
+                    <p th:text="${message}"></p>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+                        <input type="file" class="form-control" name="file" id="file" path="file" placeholder="Загрузите вашу картинку"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="title" class="cols-sm-2 control-label">Название статьи</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-book" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="title" id="title" path="title" placeholder="Введите название статьи"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="anons" class="cols-sm-2 control-label">Анонс</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-align-justify" aria-hidden="true"></i></span>
+                        <textarea type="text"  name="anons" id="anons" path="anons" placeholder="Введите анонс статьи (максимум 255 символов)" class="form-control" style="min-height: 150px"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="cols-sm-2 control-label">Текст</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-align-justify" aria-hidden="true"></i></span>
+                        <textarea type="text" name="text" placeholder="Введите вашу статьи" class="form-control" style="min-height: 300px"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <input type="submit" value="Опубликовать"id="button" class="btn btn-primary btn-lg btn-block login-button" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

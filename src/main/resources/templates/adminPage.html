@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>AdminPage</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{styles/bootstrap-4.1.2/bootstrap.min.css}">
+    <link th:href="@{plugins/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" th:href="@{styles/main_styles.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{styles/adminPage.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{styles/about.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{styles/about_responsive.css}">
+
+</head>
+<body>
+<div>
+    <div class="super_container">
+        <header class="header" th:insert="blocks/header"></header>
+
+        <div class="home">
+            <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/about.jpg" data-speed="0.8"></div>
+            <div class="home_overlay"></div>
+            <div class="home_container d-flex flex-column align-items-center justify-content-center">
+                <div class="home_title"><h1>Страница Администратора</h1></div>
+            </div>
+        </div>
+            <div class="adminPage">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="d-flex flex-row align-items-start justify-content-start flex-wrap ">
+                                <div class="tabs">
+                                    <input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
+                                    <label for="tab-btn-1">Кандидаты в тренеры</label>
+
+                                    <input type="radio" name="tab-btn" id="tab-btn-2" value="">
+                                    <label for="tab-btn-2">Создать статью в раздел блог</label>
+
+                                    <input type="radio" name="tab-btn" id="tab-btn-3" value="">
+                                    <label for="tab-btn-3">Все пользователи</label>
+
+                                    <input type="radio" name="tab-btn" id="tab-btn-4" value="">
+                                    <label for="tab-btn-4">Все тренера</label>
+
+                                    <div id="content-1">
+                                        <table class="table ">
+                                            <thead>
+                                            <tr>
+                                                <th>Фото</th>
+                                                <th>Ф.И.О</th>
+                                                <th>Еmail</th>
+                                                <th>Номер телефона</th>
+                                                <th>Категория</th>
+                                                <th>Информация о кандидате</th>
+                                                <th>Сделать тренером</th>
+                                                <th>Удалить</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <p style="font-size:20px; ">Всего кандидатов  на должность тренера: <span style="color: #bd2130" th:text="${sizeCadidates}" ></span> человека. </p>
+
+                                            <tr  th:each="el : ${candidateTrainers}">
+                                                <td><img class="imgCandidateTable" th:src="'data:image/jpeg;base64,' +${el.image} " ></td>
+                                                <td th:text="${el.fullName}"></td>
+                                                <td th:text="${el.email}"></td>
+                                                <td th:text="${el.phone}"></td>
+                                                <td th:text="${el.category}"></td>
+                                                <td th:text="${el.aboutCandidate}"></td>
+                                                <td>
+                                                    <form method="post" th:action=" '/adminPage/' + ${el.id} +'/appointTrainer'  "  class="formDelete">
+                                                        <button class="btn btn-warning btnDelete admBtn" type="submit">
+                                                            <i class="fa fa-plus" aria-hidden="true" title="Сделать тренером"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                                <td >
+                                                    <form method="post" th:action=" '/adminPage/' + ${el.id} +'/delete'  "  class="formDelete">
+                                                        <button class="btn btn-warning btnDelete admBtn" type="submit">
+                                                            <i class="fa fa-trash-o" aria-hidden="true" title="Удалить пост"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="content-2">
+                                        <a th:href="@{adminPage/{id}/addArticle}">Создать статью в раздел блог</a>
+                                    </div>
+                                    <div id="content-3">
+                                        <p style="font-size:20px; ">Всего зарегистрировано  на сайте <span style="color: #bd2130" th:text="${size}" ></span> пользователя. </p>
+                                        <table class="table ">
+                                            <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Логин</th>
+                                                <th>Еmail</th>
+                                                <th>Роль</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr  th:each="el : ${allUser}">
+                                                    <td th:text="${el.id}"></td>
+                                                    <td th:text="${el.username}"></td>
+                                                    <td th:text="${el.eMail}"></td>
+                                                    <td th:text="${el.roles}"></td>
+                                                </tr>
+                                            <tbody>
+                                        </table>
+
+                                    </div>
+                                    <div id="content-4">
+                                        <p style="font-size:20px; ">Всего тренеров <span style="color: #bd2130" th:text="${sizeTrainer}" ></span> . </p>
+                                        <table class="table ">
+                                            <thead>
+                                            <tr>
+                                                <th>Фото</th>
+                                                <th>Логин</th>
+                                                <th>Категория</th>
+                                                <th>О себе</th>
+                                                <th>Редактировать</th>
+                                                <th>Удалить</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr  th:each="el : ${allTrainers}">
+                                                <td><img th:src="'data:image/jpeg;base64,' +${el.image} " class="imgTrainerTable"></td>
+                                                <td th:text="${el.fullName}"></td>
+                                                <td th:text="${el.category}"></td>
+                                                <td th:text="${el.description}"></td>
+                                                <td>
+                                                    <a th:href="@{'/adminPage/' + ${el.id} +'/editTrainer' }"><i class="fa fa-pencil" aria-hidden="true" title="Редактировать пост"></i></a>
+                                                </td>
+                                                <td >
+                                                    <form method="post" th:action=" '/adminPage/' + ${el.id} +'/deleteTrainer'  "  class="formDelete">
+                                                        <button class="btn btn-warning btnDelete admBtn" type="submit">
+                                                            <i class="fa fa-trash-o" aria-hidden="true" title="Удалить пост"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+
+                </div>
+            </div>
+
+        <footer class="footer" th:insert="blocks/footer"></footer>
+    </div>
+</div>
+
+
+<script th:src="@{js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{styles/bootstrap-4.1.2/bootstrap.min.js}"></script>
+<script th:src="@{plugins/progressbar/progressbar.min.js}"></script>
+<script th:src="@{plugins/parallax-js-master/parallax.min.js}"></script>
+<script th:src="@{js/about.js}"></script>
+</body>
+</html>
