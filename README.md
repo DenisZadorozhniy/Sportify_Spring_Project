@@ -8,3 +8,6 @@ The project used such technologies and libraries:
 * Thymeleaf
 * Lombok
 * Bootstrap
+***
+1. The main activity of the application looks like this.When a user logs in for the first time, the system identifies him as anonymous.
+![main activity](1.png)
