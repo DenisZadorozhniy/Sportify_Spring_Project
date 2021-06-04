@@ -11,4 +11,7 @@ The project used such technologies and libraries:
 ***
 1. The main activity of the application looks like this.When a user logs in for the first time, the system identifies him as anonymous.
 ![main activity](1.png)
-2. 
+2. Then the user can register on the site.
+![registration](2.png)
+3. If the user enters incorrect data, site validation will work.
+![validation](3.png)
