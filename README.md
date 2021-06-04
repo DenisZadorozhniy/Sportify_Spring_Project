@@ -25,3 +25,6 @@ The project used such technologies and libraries:
 ![search](7.png)
 8. For more convenient display of articles on the site, pagination is provided.
 ![pagination](8.png)
+9. If a user wants to work in this gym, he can fill out a special form and become a candidate. After that, the result of the completed form will be sent to the site administrator, who, in turn, can approve the candidate and make him a trainer in the gym, or reject and remove him from the candidates section.
+![candidate](9.png)
+![candidate_form](10.png)
