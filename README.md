@@ -28,3 +28,15 @@ The project used such technologies and libraries:
 9. If a user wants to work in this gym, he can fill out a special form and become a candidate. After that, the result of the completed form will be sent to the site administrator, who, in turn, can approve the candidate and make him a trainer in the gym, or reject and remove him from the candidates section.
 ![candidate](9.png)
 ![candidate_form](10.png)
+10.That's all for a regular user, let's go to the site administrator. When a user with the administrator role enters the site, a section for the administrator is added to his menu.
+![admin](11.png)
+11.There are 4 tabs on the admin page: displaying all candidates for a trainer, the ability to add a new article, a list of all registered users and a list of active trainers in the gym.
+![admin_page](12.png)
+12.In the section all trainers, you can edit the data of the trainer. If the trainer is no longer working, then there is an opportunity to delete it.
+![trainers](13.png)
+13.In the add a new article section there will be a form for filling out information about the article.
+![article_form](14.png)
+14.The administrator can also edit or delete any article.
+![edit_article](15.png)
+15. Article editing form.
+![edit_form](15.png) 
