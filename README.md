@@ -38,5 +38,5 @@ The project used such technologies and libraries:
 ![article_form](14.png)
 14.The administrator can also edit or delete any article.
 ![edit_article](15.png)
-15. Article editing form.
+
 ![edit_form](16.png) 
