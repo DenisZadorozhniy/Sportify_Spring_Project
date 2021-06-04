@@ -1,10 +1,10 @@
 # Sportify_Spring_Project
 The project used such technologies and libraries:
 * Spring
- * Spring-boot
- * Spring-security
+ 1. Spring-boot
+ 1. Spring-security
 * Hibernate
- * Hibernate-validator
+ 1. Hibernate-validator
 * Thymeleaf
 * Lombok
 * Bootstrap
